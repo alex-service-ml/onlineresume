@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div class="school-section" th:fragment="schoolSection (sections)">
+    <div th:if="${not #lists.isEmpty(sections)}" >
+        <div class="row">
+            <div class="col-md-12">
+                <div th:include="fragments/pixel-title :: pixel-title (imgsrc='../images/placeholder-64.png',text=#{resume.school.title})">Education</div>
+            </div>
+        </div>
+    </div>
+    <div th:each="section : ${sections}" >
+        <div class="row pixel-title">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2 class="school-name" th:text="${section.title}">School Name</h2>
+                        <h3 class="certificate-description" th:text="${section.description}">Degree/Certificate Earned</h3>
+                    </div>
+                    <div class="col-md-4">
+                        <h2 class="school-gpa" th:text="#{resume.school.gpa}+' '+${section.gpa}">GPA</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr class="school-thead-row">
+                                    <th th:text="#{resume.school.awards}">Awards</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="award : ${section.awards}">
+                                    <th th:text="${award}">My award</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

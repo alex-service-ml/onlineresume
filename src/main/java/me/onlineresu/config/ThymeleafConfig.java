@@ -1,10 +1,13 @@
 package me.onlineresu.config;
 
+import me.onlineresu.converters.PersonalDetailsConverter;
+import me.onlineresu.converters.ResumeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.templateresolver.FileTemplateResolver;
@@ -23,9 +26,12 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter{
     @Value("${resume.resource-path}")
     private String resourcePath;
 
+    private final ResumeConverter resumeConverter;
+
     @Autowired
-    public ThymeleafConfig(ThymeleafProperties properties) {
+    public ThymeleafConfig(ThymeleafProperties properties, ResumeConverter resumeConverter, PersonalDetailsConverter personalDetailsConverter) {
         this.properties = properties;
+        this.resumeConverter = resumeConverter;
     }
 
     @Override
@@ -45,5 +51,10 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter{
         resolver.setCharacterEncoding(properties.getEncoding().toString());
         resolver.setCacheable(properties.isCache());
         return resolver;
+    }
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(resumeConverter);
     }
 }

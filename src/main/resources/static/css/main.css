@@ -1,28 +1,79 @@
+/*
+Colors:
+Japanese Indigo 273E47
+Lapis Lazuli    1C5D99
+Orange Crayola  FF7C30
+Tuscan Tan      A38560
+Dark Puce       484041
+
+ */
 @font-face {
     font-family: dpComicFont;
-    src: url(../fonts/dpcomic.ttf);
+    src:
+            url(../fonts/dpcomic.woff) format('woff'),
+            url(../fonts/dpcomic.ttf) format('truetype');
 }
 
-body {
-    font-family: dpComicFont;
-    background-color: #f00;
+html body {
+    /* Officially, we should use a custom bootstrap instance to replace fonts, but being more specific is simple :) */
+    font-family: dpComicFont, sans-serif;
+    background-image: url(../images/grey_bg.jpg);
+    background-color: #273e47;
+    color: #FFF;
+    font-weight: 100;
+    letter-spacing: 2px;
+    font-size: 18px;
 }
 
-p {
-    color: #0cc;
-    background-color: #515151;
-    font-size: 24px;
+ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
 
 }
 
-#borderimg {
+li {
+    background:url(../images/hand-icon.png) no-repeat 0 -2px;
+    padding-left:32px;
+}
+
+.container-fluid {
+    background: #515151;
+
+}
+
+.grid-background {
+    background-image: url(../images/dark_embroidery.png);
+}
+
+.borderimg {
     border: 10px solid transparent;
-    padding: 15px;
-    -webkit-border-image: url(../images/border3.png) 10 stretch;
-    -o-border-image: url(../images/border3.png) 10 stretch;
-    border-image: url(../images/border3.png) 10 stretch;
+    -webkit-border-image: url(../images/black_border.png) 10 stretch;
+    -o-border-image: url(../images/black_border.png) 10 stretch;
+    border-image: url(../images/black_border.png) 10 stretch;
     -webkit-border-radius:12px;
     -moz-border-radius:12px;
     border-radius:12px;
 }
 
+.component-title {
+    display: inline;
+    text-transform: uppercase;
+    color: #FF7C30;
+}
+
+.pixel-title {
+    padding: 10px;
+}
+
+.school-thead-row {
+    color: #97B5D0;
+}
+
+.school-name, .certificate-description, .school-gpa {
+    color: #97B5D0;
+}
+
+.experience-name, .experience-description, .experience-date {
+    color: #97B5D0;
+}

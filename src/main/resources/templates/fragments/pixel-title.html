@@ -1,0 +1,16 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="pixel-title (imgsrc, text)">
+            <img th:src="@{${imgsrc}}" />
+            <h2 class="component-title" th:text="${text}"></h2>
+</div>
+
+</body>
+
+</html>

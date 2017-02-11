@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="experienceSection (sections)" class="experience">
+    <div class="row">
+        <div class="col-md-12 dev-experience pixel-title">
+            <div th:include="fragments/pixel-title :: pixel-title (imgsrc='../images/placeholder-64.png',text=#{resume.experience.title})"></div>
+        </div>
+    </div>
+    <div th:each="section : ${sections}" >
+        <div class="row pixel-title">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="experience-name" th:text="${section.title}">Job Name</h2>
+                        <h3 class="experience-description" th:text="${section.description}">Position</h3>
+                    </div>
+                    <div class="col-md-1 col-md-offset-4">
+                        <h2 class="experience-date" th:text="(${null != section.startDate} ? ${section.startDate}+' - ' : '') + (${null != section.endDate} ? ${section.endDate} : #{resume.experience.present})">Date</h2>
+                    </div>
+                </div>
+                <div class="row" th:if="${not #lists.isEmpty(section.tasks)}">
+                    <div class="col-md-12">
+                        <ul>
+                            <li th:each="task : ${section.tasks}">
+                                <p th:text="${task}"></p>
+                            </li>
+                        </ul>
+                        <p></p>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <body>
+
+        <div th:fragment="skillsSection (skillsSections)" class="skills">
+            <div class="row pixel-title">
+                <div class="col-md-12">
+                    <div th:include="fragments/pixel-title :: pixel-title (imgsrc='../images/placeholder-64.png',text=#{resume.skillSections.title})"></div>
+                </div>
+            </div>
+            <table class="table">
+                <tbody>
+                    <tr th:each="skill : ${skillsSections}">
+                        <th>
+                            <span th:text="${skill.name}"></span>
+                        </th>
+                        <th th:if="${not skill.certificate}">
+                            <img th:src="${'../images/bar-blue-' + skill.proficiency + '.png'}" style="float: left" />
+                        </th>
+                        <th th:if="${skill.certificate}">
+                            <img th:src="${'../images/square-certificate.png'}"/>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </body>
+</html>
